@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Portofolio - Farhan R.A</title>
+<style>
+  /* Reset and basic styles */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin:0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0c081b;
+    color: #eee;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
+  }
+  .container {
+    background: #1f1f1f;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  header {
+    background: #2c2c2c;
+    padding: 20px;
+    width: 250px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #1e3a8a;
+    box-shadow: 0 0 10px #1e3a8aa0;
+    margin-bottom: 15px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    touch-action: manipulation;
+  }
+  header img:focus,
+  header img:hover,
+  header img:active {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px #3b82f6cc;
+    outline: none;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 5px 0;
+    color: #144ce6;
+    text-align: center;
+  }
+  header p {
+    margin: 0;
+    font-style: italic;
+    color: #bbb;
+    text-align: center;
+  }
+
+  main {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: 560px;
+  }
+  main section {
+    margin: 0;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    padding: 8px 12px;
+    touch-action: manipulation;
+  }
+  main section:focus-within,
+  main section:hover {
+    background-color: #2a2a5a;
+  }
+  main h2 {
+    color: #3b82f6;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #3b82f6;
+    padding-bottom: 5px;
+  }
+  main p, main li {
+    font-size: 0.95rem;
+  }
+  ul {
+    padding-left: 18px;
+    margin-bottom: 10px;
+  }
+  /* Education Career inside biodata */
+  .education-career {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .edu-item {
+    flex: 1 1 45%;
+    background: #282828;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 7px #1e3a8aa0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  .edu-item:focus,
+  .edu-item:hover,
+  .edu-item:active {
+    outline: none;
+    transform: scale(1.05);
+    box-shadow: 0 0 12px #3b82f6cc;
+  }
+  .edu-item img {
+    width: 100%;
+    max-width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 0 8px #1e3a8acc;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .edu-item img:focus,
+  .edu-item img:hover,
+  .edu-item img:active {
+    transform: scale(1.1);
+    box-shadow: 0 0 14px #3b82f6cc;
+    outline: none;
+  }
+  .edu-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #3b82f6;
+    text-align: center;
+  }
+  .edu-desc {
+    font-size: 0.9rem;
+    color: #ddd;
+    text-align: center;
+  }
+  /* Gallery section */
+  .gallery {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  .gallery img {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(59,130,246,0.6);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    touch-action: manipulation;
+  }
+  .gallery img:hover,
+  .gallery img:focus,
+  .gallery img:active {
+    transform: scale(1.1);
+    box-shadow: 0 0 14px rgba(59,130,246,0.9);
+    outline: none;
+  }
+  /* Contact Section */
+  .contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .contact-button {
+    background: #1e3a8a;
+    border: none;
+    color: #eee;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    touch-action: manipulation;
+  }
+  .contact-button:hover,
+  .contact-button:focus {
+    background: #3b82f6;
+    color: #121212;
+    outline: none;
+    transform: scale(1.05);
+  }
+  .contact-button:active {
+    transform: scale(0.98);
+  }
+  /* Icons */
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #eee;
+    transition: fill 0.3s ease;
+  }
+  .contact-button:hover svg,
+  .contact-button:focus svg {
+    fill: #121212;
+  }
+  /* Responsive */
+  @media (max-width: 750px) {
+    .container {
+      flex-direction: column;
+      max-width: 350px;
+      max-height: 600px;
+    }
+    header {
+      width: 100%;
+      padding: 15px;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    header img {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 0;
+    }
+    header h1 {
+      font-size: 1.4rem;
+      text-align: left;
+      margin-bottom: 5px;
+    }
+    header p {
+      text-align: left;
+    }
+    main {
+      max-height: none;
+      padding: 15px 15px 25px;
+    }
+    .gallery {
+      gap: 10px;
+    }
+    .gallery img {
+      width: 90px;
+      height: 70px;
+    }
+    .education-career {
+      flex-direction: column;
+    }
+    .edu-item {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+  <article class="container" role="main">
+    <header>
+      <img src="https://images.pexels.com/photos/31961516/pexels-photo-31961516.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto Profil" tabindex="0" />
+      <div>
+        <h1>Farhan Rizky Alkarim</h1>
+        <p>Full-Stack Developer &amp; Designer</p>
+      </div>
+    </header>
+    <main>
+      <section aria-labelledby="biodata-title" tabindex="0">
+        <h2 id="biodata-title">Biodata</h2>
+        <p>Hai! Seorang pelajar yang bercita-cita menjadi Software Engineer, saat ini masih berusaha untuk menggapai cita-cita.</p>
+        <ul>
+          <li><strong>Nama:</strong> Farhan Rizky Alkarim</li>
+          <li><strong>Umur:</strong> 19 Tahun</li>
+          <li><strong>Alamat:</strong> Blitar, Jawa Timur, Indonesia</li>
+          <li><strong>Email:</strong> farhan.rizky.alkarim5@gmail.com</li>
+        </ul>
+        <div class="education-career" aria-label="Karir Pendidikan">
+          <div class="edu-item" tabindex="0" role="button" aria-pressed="false">
+            <img src="https://images.pexels.com/photos/31962331/pexels-photo-31962331.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Sekolah Menengah Atas" />
+            <div class="edu-title">Sekolah Menengah Atas (SMA)</div>
+            <div class="edu-desc">MAN Kota Blitar, 2022 - 2025</div>
+          </div>
+          <div class="edu-item" tabindex="0" role="button" aria-pressed="false">
+            <img src="https://images.pexels.com/photos/31962199/pexels-photo-31962199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Sekolah Menengah Pertama" />
+            <div class="edu-title">Sekolah Menengah Pertama (SMP)</div>
+            <div class="edu-desc">SMP Islam Al-Azhaar Tulungagung, 2019 - 2022</div>
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="skills-title" tabindex="0">
+        <h2 id="skills-title">Keahlian</h2>
+        <ul>
+          <li>HTML, CSS, JavaScript (Dikit-dikit)</li>
+          <li>Makan &amp; Tidur</li>
+          <li>ExpLaner &amp; Jungler</li>
+        </ul>
+      </section>
+      <section aria-labelledby="gallery-title" tabindex="0">
+        <h2 id="gallery-title">Foto</h2>
+        <div class="gallery" role="list">
+          <img role="listitem" tabindex="0" src="https://images.pexels.com/photos/31962231/pexels-photo-31962231.jpeg" alt="Foto 1" />
+          <img role="listitem" tabindex="0" src="https://images.pexels.com/photos/31962232/pexels-photo-31962232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto 2" />
+          <img role="listitem" tabindex="0" src="https://images.pexels.com/photos/31962332/pexels-photo-31962332.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto 3" />
+          <img role="listitem" tabindex="0" src="https://images.pexels.com/photos/31962359/pexels-photo-31962359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto 4" />
+        </div>
+      </section>
+      <section aria-labelledby="contact-title" tabindex="0">
+        <h2 id="contact-title">Media Sosial</h2>
+        <div class="contact-buttons">
+          <a class="contact-button" href="https://wa.me/6281331650957" target="_blank" rel="noopener" aria-label="Hubungi WhatsApp" tabindex="0">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.92 11.92 0 0012 0C5.373 0 0 5.373 0 12a11.9 11.9 0 001.998 6.25L0 24l5.8-1.88A11.92 11.92 0 0012 24c6.627 0 12-5.373 12-12 0-3.187-1.247-6.184-3.48-8.52zm-8.52 18.2a9.86 9.86 0 01-5.282-1.58l-.376-.243-3.44 1.12 1.153-3.323-.244-.37a9.85 9.85 0 01-1.57-5.256c0-5.482 4.45-9.93 9.933-9.93 2.656 0 5.15 1.034 7.02 2.908a9.814 9.814 0 012.905 7.036 9.874 9.874 0 01-9.936 9.936zm5.404-7.372l-1.478-.27c-.198-.034-.4-.02-.57.048-.19.077-.604.423-1.18.802-.33.21-.62.337-.885.43-.3.11-.54.044-.74-.128-.183-.158-.71-.659-1.004-.897-.22-.182-.367-.41-.512-.648-.163-.28-.01-.43.1-.56l.535-.646c.153-.183.323-.475.43-.642.13-.2.064-.31-.03-.44l-.633-.89c-.197-.31-.352-.33-.57-.337l-.488-.009c-.217 0-.57.08-.87.44-.287.34-1.1 1.073-1.1 2.61 0 1.54 1.13 3.034 1.287 3.244.157.21 2.22 3.437 5.404 4.818 1.19.516 2.124.823 2.85 1.053 1.19.38 2.277.327 3.136.198 0 0 1.37-.55 1.56-1.36.18-.79.18-1.47.13-1.6-.05-.13-.2-.18-.4-.31z"/></svg>
+            WhatsApp
+          </a>
+          <a class="contact-button" href="https://instagram.com/farhaanriez/" target="_blank" rel="noopener" aria-label="Kunjungi Instagram" tabindex="0">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.206.056 2.03.24 2.5.415a5.025 5.025 0 011.815 1.167 5.025 5.025 0 011.166 1.814c.174.47.36 1.294.415 2.5.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.056 1.206-.24 2.03-.415 2.5a5.025 5.025 0 01-1.167 1.815 5.025 5.025 0 01-1.814 1.166c-.47.174-1.294.36-2.5.415-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.206-.056-2.03-.24-2.5-.415a5.025 5.025 0 01-1.815-1.167 5.025 5.025 0 01-1.166-1.814c-.174-.47-.36-1.294-.415-2.5C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.056-1.206.24-2.03.415-2.5a5.025 5.025 0 011.167-1.815 5.025 5.025 0 011.814-1.166c.47-.174 1.294-.36 2.5-.415C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.735 0 8.332.013 7.052.07 5.773.125 4.673.34 3.73.754a7.027 7.027 0 00-2.55 1.642A7.028 7.028 0 00.753 4.95c-.414.94-.63 2.04-.683 3.32C.013 8.33 0 8.733 0 12c0 3.267.013 3.67.07 4.95.054 1.28.27 2.38.683 3.32a7.048 7.048 0 001.646 2.544 7.048 7.048 0 002.544 1.646c.94.414 2.04.63 3.32.683 1.28.057 1.683.07 4.95.07s3.67-.013 4.95-.07c1.28-.054 2.38-.27 3.32-.683a7.028 7.028 0 002.544-1.646 7.028 7.028 0 001.646-2.544c.414-.94.63-2.04.683-3.32.057-1.28.07-1.683.07-4.95s-.013-3.67-.07-4.95c-.054-1.28-.27-2.38-.683-3.32a7.03 7.03 0 00-1.646-2.544A7.04 7.04 0 0020.271.753c-.94-.414-2.04-.63-3.32-.683C15.67.013 15.267 0 12 0z"/><path d="M12 5.838a6.163 6.163 0 106.162 6.162A6.169 6.169 0 0012 5.838zm0 10.18a4.018 4.018 0 114.018-4.018A4.023 4.023 0 0112 16.018z"/><circle cx="18.406" cy="5.594" r="1.44"/></svg>
+            Instagram
+          </a>
+        </div>
+      </section>
+    </main>
+  </article>
+<script>
+  // Add active touch feedback for mobile devices on elements with .edu-item and .gallery img and .contact-button and header img
+  function addTouchActiveEffect(selector) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(el => {
+      el.addEventListener('touchstart', () => {
+        el.classList.add('active-touch');
+      });
+      el.addEventListener('touchend', () => {
+        el.classList.remove('active-touch');
+      });
+      el.addEventListener('touchcancel', () => {
+        el.classList.remove('active-touch');
+      });
+    });
+  }
+  addTouchActiveEffect('.edu-item');
+  addTouchActiveEffect('.gallery img');
+  addTouchActiveEffect('.contact-button');
+  addTouchActiveEffect('header img');
+</script>
+</body>
+</html>
+
