@@ -279,12 +279,23 @@
 </style>
 </head>
 <body>
-  <button onclick="document.getElementById('bgm').play()">Putar Musik</button>
-
-  <audio id="bgm" loop>
+  <audio id="bgm" autoplay loop muted>
     <source src="audio/bg.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+
+  <script>
+    // Setelah halaman dimuat, unmute setelah sedikit delay (bypass blokir autoplay)
+    window.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("bgm");
+      setTimeout(() => {
+        audio.muted = false;
+        audio.play().catch(e => {
+          console.log("Autoplay ditolak browser, tunggu interaksi pengguna");
+        });
+      }, 500); // tunda sedikit agar browser tidak langsung blok
+    });
+  </script>
   <article class="container" role="main">
     <header>
       <img src="https://images.pexels.com/photos/31961516/pexels-photo-31961516.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto Profil" tabindex="0" />
