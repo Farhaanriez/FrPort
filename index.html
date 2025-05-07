@@ -287,13 +287,21 @@
   <script>
     // Setelah halaman dimuat, unmute setelah sedikit delay (bypass blokir autoplay)
     window.addEventListener("DOMContentLoaded", () => {
-      const audio = document.getElementById("bgm");
-      setTimeout(() => {
-        audio.muted = false;
-        audio.play().catch(e => {
-          console.log("Autoplay ditolak browser, tunggu interaksi pengguna");
-        });
-      }, 500); // tunda sedikit agar browser tidak langsung blok
+        const audio = document.getElementById("bgm");
+        setTimeout(() => {
+            // Menambahkan event listener untuk body
+            const playAudio = () => {
+                audio.muted = false;
+                audio.play().catch(e => {
+                    console.log("Autoplay ditolak browser, tunggu interaksi pengguna");
+                });
+                // Hapus event listener setelah audio diputar
+                document.body.removeEventListener("click", playAudio);
+                document.body.removeEventListener("touchstart", playAudio);
+            };
+            document.body.addEventListener("click", playAudio);
+            document.body.addEventListener("touchstart", playAudio);
+        }, 500); // tunda sedikit agar browser tidak langsung blok
     });
   </script>
   <article class="container" role="main">
